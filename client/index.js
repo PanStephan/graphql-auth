@@ -21,7 +21,7 @@ const client = new ApolloClient({
 ReactDOM.render(
   <ApolloProvider client={client}>
     <HashRouter>
-      <Route path='/' component={App}/>
+      <App/>
     </HashRouter>
   </ApolloProvider>,
   document.getElementById('root')
