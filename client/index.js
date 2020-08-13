@@ -4,7 +4,7 @@ import ApolloClient from 'apollo-client'
 import { ApolloProvider } from 'react-apollo'
 import { HttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import { HashRouter, Route } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom'
 
 import App from './components/App/App'
 
@@ -15,13 +15,14 @@ const httpLink = new HttpLink({
 
 const client = new ApolloClient({
   link: httpLink,
-  cache
+  cache,
+  // dataIdFromObject: o => o.id
 })
 
 ReactDOM.render(
   <ApolloProvider client={client}>
     <HashRouter>
-      <Route path='/' component={App}/>
+      <App/>
     </HashRouter>
   </ApolloProvider>,
   document.getElementById('root')
