@@ -1,7 +1,9 @@
 import React from 'react'
 
+import Header from '../Header/Header'
+
 const Login = () => (
-  <div> world </div>
+  <Header/>
 )
 
 export default Login
