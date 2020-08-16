@@ -1,17 +1,18 @@
 import React from 'react'
 import { graphql } from 'react-apollo'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 import mutation from '../../mutations/logout'
 import query from '../../queries/currentUser'
 
-const Header = props => {
-  const { loading, user } = props.data
+const Header = ({ data, mutate }) => {
+  const { loading, user } = data
+  const history = useHistory()
 
   const onLogoutClick = () => {
-    props.mutate({
+    mutate({
       refetchQueries: [{ query }]
-    })
+    }).then(() => history.push('/'))
   }
   
   const renderButtons = () => {
