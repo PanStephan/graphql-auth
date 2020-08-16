@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { graphql } from 'react-apollo'
 
+import mutation from '../../mutations/signup'
 import AuthForm from '../AuthForm/AuthForm'
-import mutation from '../../mutations/login' 
 import query from '../../queries/currentUser'
 
-const Login = ({ data, mutate, history }) => {
+const SignupForm = ({ history, mutate, data }) => {
 
   const { user } = data
   const [errors, setErrors] = useState([])
@@ -21,10 +21,7 @@ const Login = ({ data, mutate, history }) => {
 
   const onSubmit = ({ email, password }) => {
     mutate ({
-      variables: {
-        email,
-        password
-      },
+      variables: { email, password },
       refetchQueries: [{ query }]
     }).catch(res => {
       const err = res.graphQLErrors.map(err => err.message)
@@ -38,5 +35,5 @@ const Login = ({ data, mutate, history }) => {
 }
 
 export default graphql(query)(
-  graphql(mutation)(Login)
+  graphql(mutation)(SignupForm)
 )
